@@ -109,3 +109,26 @@ footer {
 footer nav {
 	float: none;
 }
+
+/* User show page */
+
+#userall{
+	width: 100%;
+}
+
+#usershowul {
+	list-style-type: none;
+}
+
+.usersidebar {
+	width: 30%;
+	margin: 0px 0px 0px auto;
+	border: 1px solid #999;
+	padding: 20px 10px;
+	background-color: #ffc;
+}
+
+.usermain {
+	width: 70%;
+	float: left;
+}
