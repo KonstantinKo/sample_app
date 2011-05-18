@@ -123,7 +123,6 @@ footer nav {
 .usersidebar {
 	width: 30%;
 	margin: 0px 0px 0px auto;
-	border: 1px solid #999;
 	padding: 20px 10px;
 	background-color: #ffc;
 }
@@ -131,4 +130,8 @@ footer nav {
 .usermain {
 	width: 70%;
 	float: left;
+}
+
+h1 img {
+	border: 1px solid #999;
 }
