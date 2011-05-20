@@ -135,3 +135,11 @@ footer nav {
 h1 img {
 	border: 1px solid #999;
 }
+
+
+
+/* User Signup */
+
+div.field, div.actions {
+	margin-bottom: 10px;
+}
