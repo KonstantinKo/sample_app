@@ -5,9 +5,4 @@ module UsersHelper
                                             :gravatar => options)
   end
   
-  private
-  
-    def deny_access
-      redirect_to signin_path, :notice => "Please sign in to view this page."
-    end
 end
