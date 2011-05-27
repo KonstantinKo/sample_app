@@ -51,6 +51,12 @@ describe "LayoutLinks" do
      response.should have_selector("a", :href => signin_path,
                                         :content => "Sign in")
    end
+   
+   it "should not have a profile or settings link" do
+     visit root_path
+     response.should_not have_selector('a', :content => "Settings")
+     response.should_not have_selector("a", :content => "Profile")
+   end
  end
  
  describe "when signed in" do
@@ -73,6 +79,18 @@ describe "LayoutLinks" do
      visit root_path
      response.should have_selector("a", :href => user_path(@user),
                                         :content => "Profile")
+   end
+   
+   it "should have a settings link" do
+     visit root_path
+     response.should have_selector('a', :href => edit_user_path(@user), 
+                                        :content => "Settings")
+   end
+
+   it "should have a users link" do
+     visit root_path
+     response.should have_selector('a', :href => users_path, 
+                                        :content => "Users")
    end
  end
 end
