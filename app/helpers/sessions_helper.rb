@@ -53,5 +53,9 @@ module SessionsHelper
     def remember_token
       cookies.signed[:remember_token] || [nil, nil]
     end 
+    
+    def authenticate                                #hartl - not private
+      deny_access unless signed_in?
+    end
   
 end

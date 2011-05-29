@@ -58,7 +58,7 @@ describe "Users" do
       @user.toggle!(:admin)
       @user.should be_admin
     end
-    
   end
+  
 
 end
