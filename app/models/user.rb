@@ -1,4 +1,4 @@
-# == Schema Information
+ # == Schema Information
 # Schema version: 20110527110513
 #
 # Table name: users
@@ -16,6 +16,8 @@
 class User < ActiveRecord::Base
   attr_accessor     :password
   attr_accessible   :name, :email, :password, :password_confirmation
+  
+  has_many :microposts, :dependent => :destroy
   
   email_regex = /\A[\w.+\-\d]+@[\w\-\d]+\.[a-zA-Z]{2,3}\.?[a-zA-Z]{0,3}\z/i
   
