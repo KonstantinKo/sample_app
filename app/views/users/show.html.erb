@@ -3,6 +3,7 @@
 	<%= gravatar_for @user, :size => 50 %>
 	<%= @user.name %>
 	</h1>
+	<%= render 'shared/follow_form' if signed_in? %>
 	<% if @user.microposts.any? %>
 		<div class="microposts">
 			<%= render @microposts %>
@@ -15,5 +16,6 @@
 	<li><strong>Name: </strong><%= @user.name %></li>
 	<li><strong>URL: </strong><%= link_to user_path(@user) %></li>
 	<li><strong>Microposts: </strong><%= @user.microposts.count %></li>
+	<%= render 'shared/stats' %>
 </ul>
 </div>
