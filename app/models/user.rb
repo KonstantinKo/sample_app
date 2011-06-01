@@ -1,4 +1,4 @@
- # == Schema Information
+# == Schema Information
 # Schema version: 20110527110513
 #
 # Table name: users
@@ -17,7 +17,16 @@ class User < ActiveRecord::Base
   attr_accessor     :password
   attr_accessible   :name, :email, :password, :password_confirmation
   
-  has_many :microposts, :dependent => :destroy
+  has_many :microposts,    :dependent => :destroy
+  has_many :relationships, :dependent => :destroy,
+                           :foreign_key => "follower_id"
+  has_many :reverse_relationships, :class_name => "Relationship", 
+                                   :foreign_key => "followed_id",
+                                   :dependent => :destroy
+  has_many :following,     :through => :relationships, :source => :followed
+  has_many :followers,     :through => :reverse_relationships,
+                           :source  => :follower
+  
   
   email_regex = /\A[\w.+\-\d]+@[\w\-\d]+\.[a-zA-Z]{2,3}\.?[a-zA-Z]{0,3}\z/i
   
@@ -38,6 +47,18 @@ class User < ActiveRecord::Base
   
   def feed
     Micropost.where("user_id = ?", id)
+  end
+  
+  def following?(followed)
+    !!relationships.find_by_followed_id(followed)
+  end
+  
+  def follow!(followed)
+    relationships.create!(:followed_id => followed.id)
+  end
+  
+  def unfollow!(followed)
+    relationships.find_by_followed_id(followed).destroy
   end
   
   class << self
